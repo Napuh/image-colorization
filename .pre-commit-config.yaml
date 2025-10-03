@@ -1,0 +1,39 @@
+repos:
+
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v5.0.0
+  hooks:
+  - id: trailing-whitespace
+    name: Trim trailing whitespace
+  - id: end-of-file-fixer
+    name: Fix end of files
+  - id: check-yaml
+    name: Check YAML syntax
+  - id: check-toml
+    name: Check TOML syntax
+  - id: check-added-large-files
+    name: Check for large files
+    args: [--maxkb=10240]
+
+- repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
+  rev: v2.14.0
+  hooks:
+  - id: pretty-format-yaml
+    name: Format YAML files
+    args: [--autofix, --indent, '2']
+
+- repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
+  rev: v2.14.0
+  hooks:
+  - id: pretty-format-toml
+    name: Format TOML files
+    args: [--autofix]
+
+- repo: https://github.com/astral-sh/ruff-pre-commit
+  rev: v0.8.4
+  hooks:
+  - id: ruff
+    name: Ruff linter
+    args: [--fix]
+  - id: ruff-format
+    name: Ruff formatter
