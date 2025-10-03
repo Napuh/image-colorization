@@ -125,6 +125,22 @@ make train_places10         # Places10 dataset (10 classes, 15 epochs)
 make train_places10_small   # Places10 small subset (10 classes, 15 epochs)
 ```
 
+Running the full Places365 dataset training takes ~30h on a single RTX3070, and less than 20h on a RTX3090. All the training can be done with `batch_size` 128 (following the paper) in under 8GB VRAM.
+
+The default hyperparameters work well for training:
+
+- Optimizer: Adam
+- Learning rate: 1e-4
+- Number of epochs: 10-20
+
+I switched to using Adam as the default optimizer since it performed way better than the original paper's Adadelta optimizer. You can still use Adadelta if you want - just pass it as a command line parameter.
+
+Training metrics:
+![Training metrics](images/training.png)
+
+Validation metrics:
+![Validation metrics](images/validation.png)
+
 ### Manual Training
 
 Train on the full Places365-Standard dataset:
