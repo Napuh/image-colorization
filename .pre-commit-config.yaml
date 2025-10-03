@@ -1,7 +1,7 @@
 repos:
 
 - repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v5.0.0
+  rev: v6.0.0
   hooks:
   - id: trailing-whitespace
     name: Trim trailing whitespace
@@ -16,21 +16,30 @@ repos:
     args: [--maxkb=10240]
 
 - repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
-  rev: v2.14.0
+  rev: v2.15.0
   hooks:
   - id: pretty-format-yaml
     name: Format YAML files
     args: [--autofix, --indent, '2']
 
 - repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
-  rev: v2.14.0
+  rev: v2.15.0
   hooks:
   - id: pretty-format-toml
     name: Format TOML files
     args: [--autofix]
 
+- repo: https://github.com/executablebooks/mdformat
+  rev: 0.7.22
+  hooks:
+  - id: mdformat
+    name: Format Markdown files
+    additional_dependencies:
+    - mdformat-gfm
+    - mdformat-tables
+
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: v0.8.4
+  rev: v0.13.3
   hooks:
   - id: ruff
     name: Ruff linter
