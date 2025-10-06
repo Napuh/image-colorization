@@ -14,6 +14,7 @@ class DataConfig:
     batch_size: int = 128
     val_batch_size: int = 128
     num_workers: int = 4
+    prefetch_factor: int = 2
     pin_memory: bool = True
     shuffle_train: bool = True
     drop_last: bool = True
@@ -45,7 +46,7 @@ class TrainingConfig:
     eval_interval: int = 1
     seed: int = 42
     wandb_log: bool = False
-    wandb_project: str = "colorizer2"
+    wandb_project: str = "colorizer"
     run_name: Optional[str] = None
     resume_path: Optional[str] = None
 

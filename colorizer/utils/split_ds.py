@@ -3,7 +3,6 @@ import sys
 from pathlib import Path
 from typing import Iterable, List, Optional, Tuple
 
-
 VALID_IMAGE_EXTENSIONS = {
     ".jpg",
     ".jpeg",

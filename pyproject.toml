@@ -17,3 +17,7 @@ dependencies = [
 name = "colorizer"
 requires-python = ">=3.12"
 version = "0.1.0"
+
+[tool.ruff.lint]
+# Enable isort rules for import sorting
+select = ["I"]

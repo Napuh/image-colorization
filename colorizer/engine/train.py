@@ -194,7 +194,8 @@ def train(config: ExperimentConfig) -> None:
         shuffle=config.data.shuffle_train,
         num_workers=config.data.num_workers,
         pin_memory=config.data.pin_memory,
-        drop_last=True,
+        prefetch_factor=config.data.prefetch_factor,
+        drop_last=config.data.drop_last,
     )
     val_dataloader = data.DataLoader(
         val_dataset,
@@ -202,7 +203,8 @@ def train(config: ExperimentConfig) -> None:
         shuffle=False,
         num_workers=config.data.num_workers,
         pin_memory=config.data.pin_memory,
-        drop_last=True,
+        prefetch_factor=config.data.prefetch_factor,
+        drop_last=config.data.drop_last,
     )
 
     print(

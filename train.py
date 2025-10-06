@@ -6,8 +6,8 @@ from dataclasses import replace
 from pathlib import Path
 
 from colorizer.config import DEFAULT_CONFIG, ExperimentConfig
-from colorizer.utils import set_global_seed
 from colorizer.engine import train as run_train
+from colorizer.utils import set_global_seed
 
 
 def _apply_overrides(
@@ -32,6 +32,14 @@ def _apply_overrides(
         val_batch_size=args.val_batch_size or cfg.data.val_batch_size,
         train_data_path=args.train_data_path or cfg.data.train_data_path,
         val_data_path=args.val_data_path or cfg.data.val_data_path,
+        num_workers=(
+            args.num_workers if args.num_workers is not None else cfg.data.num_workers
+        ),
+        prefetch_factor=(
+            args.prefetch_factor
+            if args.prefetch_factor is not None
+            else cfg.data.prefetch_factor
+        ),
     )
     model_cfg = replace(
         cfg.model,
@@ -87,6 +95,14 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--compile", action="store_true", help="Compile the model")
     parser.add_argument("--train-data-path", type=str, help="Train data path")
     parser.add_argument("--val-data-path", type=str, help="Val data path")
+    parser.add_argument(
+        "--num-workers", type=int, help="Number of dataloader worker processes"
+    )
+    parser.add_argument(
+        "--prefetch-factor",
+        type=int,
+        help="Number of batches to prefetch per worker",
+    )
     parser.add_argument("--checkpoint-interval", type=int, help="Checkpoint interval")
     parser.add_argument("--wandb-log", action="store_true", help="Log to wandb")
     parser.add_argument("--wandb-project", type=str, help="Wandb project")
